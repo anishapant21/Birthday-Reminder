@@ -1,9 +1,12 @@
+
 import React from 'react';
 import List from './List';
+import ListFilter from './ListFilter';
 
-const Remain = ({people}) => {
+
+const Remain = ({people, all}) => {
     people.map((person)=>{
-        
+        console.log(all);
         let dateMy = new Date(person.dob);
         const dateToday= new Date();
         const yearToday= dateToday.getFullYear();
@@ -27,15 +30,29 @@ const Remain = ({people}) => {
     
         person['dayRem'] = dayRem;
         person['wishOn']= wishOn;
+
+       
+
        
     });
     const updatedData= people;
+    let con= <List people={people} />
+    if (all === true){
+        con = <List people={updatedData} />
+        all = !all;
+    } else {
+        all= !all;
+        con= <ListFilter people={people} />
+
+    }
+
+
 
 
 
     return (
         <div>
-           <List people={updatedData} /> 
+            {con}
         </div>
     );
 }
