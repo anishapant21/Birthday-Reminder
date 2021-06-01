@@ -92,16 +92,22 @@
     margin-bottom: 0;
   }
 
-  
+  .content float {
+    display: inline;
+ 
+  }
 
   .container button {
     display: block;
-    width: 100%;
+    width: 80%;
+    border-radius: 10px;
     margin: 2rem auto 0 auto;
     font-size: 1.2rem;
     padding: 0.5rem 0;
     letter-spacing: var(--spacing);
     cursor: pointer;
+    background-color:  #eca3af ;
+    border: #c590a4;
   }
   
   .container h3 {

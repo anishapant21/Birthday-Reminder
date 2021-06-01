@@ -1,28 +1,27 @@
 import React from 'react';
+import ListItem from './ListItem'
+
 
 const List = ({people})=>{
+    console.log(people);
+   const renderedList= people.map((person) => {
+    const {id, name, dayRem, image, wishOn} = person;
+
+        return <ListItem id={id} name={name} dayRem={dayRem} image={image} wishOn={wishOn} />
+    })
+
     return (
-        <>
-        {people.map((person)=>{
-            const {id, name, age, image} = person;
+        <div>
+            {renderedList}
 
-            return (
-                <div key={id} className="ui content person">
-                        <img src={image} alt="name"></img>
-                    
-                    <div>
-                        <h4 className="left float">{name}</h4>
-                        <p>{age} years </p>
-            
-                    </div>
-                </div>
-            
-        );
-
-        })}
-        </>
+        </div>
+        
+       
     );
 
 };
 
 export default List;
+
+
+
