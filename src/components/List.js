@@ -6,7 +6,7 @@ const List = ({people})=>{
    const renderedList= people.map((person) => {
         const {id, name, dayRem, image, wishOn} = person;
 
-        return <ListItem id={id} name={name} dayRem={dayRem} image={image} wishOn={wishOn} />
+        return <ListItem key={id} name={name} dayRem={dayRem} image={image} wishOn={wishOn} />
 
     })
 

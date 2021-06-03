@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ListItem= ({id, image, dayRem, name, wishOn}) => {
-    console.log(id)
     return (
         <div style={{paddingLeft: '125px'}}>
             <div  className="ui pink segment">
@@ -13,22 +12,13 @@ const ListItem= ({id, image, dayRem, name, wishOn}) => {
                     <div>
                         <h4 className="left float">{name}</h4>
                         <p className="meta"> {dayRem} days left</p>
-            
                     </div>
                 </div>
-
                     </div>
                     <div className="content column">
-                    
                         Wish on {wishOn}
-
                     </div>
                     
-                
-
-            
-            
-                
                 </div>
                 </div>
         </div>

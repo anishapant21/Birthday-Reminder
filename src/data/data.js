@@ -1,4 +1,5 @@
-export default [
+const data=
+ [
     {
       id: 1,
       name: 'Riya Joshi',
@@ -11,7 +12,7 @@ export default [
       id: 2,
       name: 'Ann Array',
       age: 23,
-      dob: '1998/08/05',
+      dob: '1997/11/23',
       image:
         'https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-3_rxtqvi.jpg',
     },
@@ -25,9 +26,9 @@ export default [
     },
     {
       id: 4,
-      name: 'Chris Evans',
+      name: 'Aryan Evans',
       age: 11,
-      dob: '1994/07/06',
+      dob: '1997/11/22',
       image:
         'https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883417/person-3_ipa0mj.jpg',
     },
@@ -42,3 +43,5 @@ export default [
     
     
   ];
+
+  export default data;

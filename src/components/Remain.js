@@ -3,19 +3,18 @@ import React from 'react';
 import List from './List';
 import ListFilter from './ListFilter';
 
-
+//calulates the remaining days
 const Remain = ({people, all}) => {
-    people.map((person)=>{
-        console.log(all);
+    people.forEach((person)=>{
         let dateMy = new Date(person.dob);
         const dateToday= new Date();
         const yearToday= dateToday.getFullYear();
         const miliSecDay= 24*60*60*1000;
         
         if (dateToday.getMonth() > dateMy.getMonth()){
-            dateMy= new Date(yearToday+1, dateMy.getMonth(), dateMy.getDate())
+            dateMy= new Date(yearToday+1, dateMy.getMonth(), dateMy.getDate());
         }else if (dateToday.getMonth()=== dateMy.getMonth() && dateToday.getDate()> dateMy.getDate()){
-            dateMy= new Date(yearToday+1, dateMy.getMonth(), dateMy.getDate())
+            dateMy= new Date(yearToday+1, dateMy.getMonth(), dateMy.getDate());
         } else {
             dateMy= new Date(yearToday, dateMy.getMonth(), dateMy.getDate())
         }
@@ -26,15 +25,12 @@ const Remain = ({people, all}) => {
         ];
         const wishOn=`${monthNames[dateMy.getMonth()]} ${dateMy.getDate()}`
     
-        
-    
         person['dayRem'] = dayRem;
         person['wishOn']= wishOn;
-
-       
-
+        
        
     });
+    
     const updatedData= people;
     let con= <List people={people} />
     if (all === true){
@@ -45,8 +41,6 @@ const Remain = ({people, all}) => {
         con= <ListFilter people={people} />
 
     }
-
-
 
 
 
