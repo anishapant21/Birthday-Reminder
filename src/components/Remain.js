@@ -1,10 +1,12 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import List from './List';
 import ListFilter from './ListFilter';
 
 //calulates the remaining days
-const Remain = ({people, all}) => {
+const Remain = ({people, all, d}) => {
+    const [newData, setNewData] = useState({})
+    
     people.forEach((person)=>{
         let dateMy = new Date(person.dob);
         const dateToday= new Date();
@@ -41,6 +43,8 @@ const Remain = ({people, all}) => {
         con= <ListFilter people={people} />
 
     }
+    
+   
 
 
 
