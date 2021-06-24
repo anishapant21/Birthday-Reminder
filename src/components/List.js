@@ -1,30 +1,29 @@
-import React from 'react';
-import ListItem from './ListItem'
+import React from "react";
+import ListItem from "./ListItem";
 
-
-const List = ({people})=>{
-   const renderedList= people.map((person) => {
-        const {id, name, dayRem, image, wishOn} = person;
-
-        return <ListItem key={id} name={name} dayRem={dayRem} image={image} wishOn={wishOn} />
-
-    })
+const List = ({ people }) => {
+  const renderedList = people.map((person) => {
+    const { id, name, dayRem, image, wishOn } = person;
 
     return (
-        <div>
-            <div>
-                <h3>{people.length} birthdays left</h3>
-            </div>
-            {renderedList}
-
-        </div>
-        
-       
+      <ListItem
+        key={id}
+        name={name}
+        dayRem={dayRem}
+        image={image}
+        wishOn={wishOn}
+      />
     );
+  });
 
+  return (
+    <div>
+      <div>
+        <h3>{people.length} birthdays left</h3>
+      </div>
+      {renderedList}
+    </div>
+  );
 };
 
 export default List;
-
-
-
