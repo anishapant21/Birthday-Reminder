@@ -3,9 +3,23 @@ import React, { useEffect, useState } from 'react';
 import List from './List';
 import ListFilter from './ListFilter';
 
+import data from '../data/data';
+
+
+
+
 //calulates the remaining days
-const Remain = ({people, all, d}) => {
-    const [newData, setNewData] = useState({})
+const Remain = ({people, all, dataGo}) => {
+    // console.log(dataGo)
+
+
+    //const [people, setPeople]=useState(data);
+    // var people=data;
+    // people.push(dataGo);
+    // console.log("me people",people)
+    
+
+    // const [newData, setNewData] = useState({})
     
     people.forEach((person)=>{
         let dateMy = new Date(person.dob);

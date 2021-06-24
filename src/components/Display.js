@@ -2,50 +2,68 @@ import React, { useEffect, useState } from 'react';
 import data from '../data/data';
 import Remain from './Remain';
 import AddNew from './AddNew';
+import { useHistory } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 
-
-const Display = ({dataNew}) =>{
-    console.log(dataNew);
-    const [dataNewMe, setDataNewMe]=useState({});
-
+const Display = () =>{
+    const location= useLocation();
     
-
-    useEffect(()=>{
-        dataNew? setDataCall() : console.log("error");
-        function setDataCall(){
-                console.log("yeahhhh baby")
-                setDataNewMe(dataNew)
-
-        }
-
-    })
-    console.log("I am new data",dataNewMe)
-
-   
-  
-
-    const [people, setPeople]=useState(data);
+    const [people, setPeople] = useState(data);
     const [all, setAll] =useState(false);
     const [buttonExist, setButtonExist] = useState(true)
     const [addNew, setAddNew] = useState(false);
     const [button, setButton] = useState('all');
-    const [addNewButton, setAddNewButton] = useState('true');
+    const [dataToSendLog, setDataToSendLog] = useState({});
+
+    // console.log(location.state)
+    // !!!location.state.detail? console.log(location.state) : console.log("no data")
+    useEffect(()=>{
+        if (location.state){
+            if (!location.state.detail){
+                return;
+            } else {
+                console.log(location.state.detail)
+                const dataToSend={
+                                name: `${location.state.detail.firstName} ${location.state.detail.lastName}`,
+                                dob: `${location.state.detail.year}/${location.state.detail.month}/${location.state.detail.day}`,
+                                image: location.state.detail.image
+                            }
+                            console.log(dataToSend)
+                            people.push(dataToSend)
+                            setPeople(people)
+
+                            
+            }
+
+        }
+        
+
+    })
+    
+
+    // useEffect(()=>{
+    //     console.log("yes baby")
+    //     !!!location? console.log(location.state.detail) : console.log("no data")
+    //     function callMeOkay(){
+    //         console.log("here I am")
+    //         console.log(location.state.detail);
+    //         
+
+    //     }
+        
+    // })
+    
 
 
 
-    const dataToSend={
-        id: people.length +1,
-        name: `${dataNewMe.firstName} ${dataNewMe.lastName}`,
-        dob: `${dataNewMe.year}/${dataNewMe.month}/${dataNewMe.day}`,
-        image: dataNewMe.image
-    }
 
-    console.log(dataToSend)
-    console.log(people)
-
-    people.push(dataToSend)
-    console.log(people)
+    const history=useHistory();
+    const callMeMaybe = () =>{
+        history.push({
+            pathname: "/addnew"
+        })
+    };
 
 
     const changedIam = () => {
@@ -55,7 +73,6 @@ const Display = ({dataNew}) =>{
         } else {
             setButton('upcoming')
         }
-        <Remain people={people} all={all} />
         
     }
     const buttonMe=()=>{
@@ -63,33 +80,7 @@ const Display = ({dataNew}) =>{
         setAddNew(false);
     }
     
-    const removeButton = () => {
-        if (buttonExist){
-            return (
-                <button className="ui red right floated basic button" onClick={()=>buttonMe()}> 
-                    Show {button} Birthdays </button>
-
-            );
-        }
-    };
-
-    const addButton = () => {
-        if(!addNew){
-            return(
-                <button className='button' onClick={()=>setAddNew(true)}>
-                    Add New
-                </button>
-
-            )
-        }
-    }
-
-    if (addNew === true){
-        var renderElement = <AddNew />
-    } else{
-        var renderElement= <Remain people={people} all={all} />
-    }
-
+  
     return (
         <main style={{paddingTop:'25px'}}>
             <div className="ui raised padded text fluid container segment">
@@ -98,13 +89,16 @@ const Display = ({dataNew}) =>{
                         <div className="column">
                         </div>
                         <div className="column">
-                            {removeButton()}
+                        <button className="ui red right floated basic button" onClick={()=>buttonMe()}> 
+                    Show {button} Birthdays </button>
                         </div>
                     </div>
                 
         
-                {renderElement}
-                {addButton()}
+                    <Remain dataGo={dataToSendLog} people={people} all={all} />
+                <button onClick={callMeMaybe} className='button'>
+                    Add New
+                </button>
                 
                 </div>  
             </div>  

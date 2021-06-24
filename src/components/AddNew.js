@@ -7,21 +7,26 @@ import Display from './Display';
 
 const AddNew = () => {
     const {register, handleSubmit} =  useForm();
-    const [addNew, setAddNew] = useState('true');
-    const [newData, setNewData] = useState();
+    // const [addNew, setAddNew] = useState('true');
+    // const [newData, setNewData] = useState();
     
     
     const history = useHistory();
     const onSubmit = (d) => {
-        console.log("d")
-        setAddNew('false')
-        setNewData(d);
+
+        history.push({
+            pathname: "/",
+            state: {detail : d}
+        })
+        console.log(d)
+        // setAddNew('false')
+        // setNewData(d);
        
 
     
     }; 
 
-    if (addNew==='true'){
+    
         var renderElem = <form onSubmit={handleSubmit(onSubmit)}>
     <div className="ui form">
         
@@ -104,22 +109,18 @@ const AddNew = () => {
 
     </form>
 
-    } else if (addNew==='false'){
-        renderElem= <Display dataNew={newData} />
-    }
     
    
 
            
     return (
-            <div>
-               {renderElem}
-            
-                
-                
-                
-            </div>
-                
+           <main style={{paddingTop:'25px'}}>
+               <div className="ui raised padded text fluid container segment">
+                   <div className="ui grid content">
+                       {renderElem}
+                   </div>
+               </div>
+           </main>
     );
 };
 
